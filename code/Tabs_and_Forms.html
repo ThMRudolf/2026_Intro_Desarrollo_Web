@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <!-- comments -->
+        <meta charset="UTF-8" />
+        <title>My favorite Bands</title>
+        <style>
+            body{background-color: rgb(159, 159, 228);}
+            h1{ 
+                color: white;
+                background-color: black
+            }
+            p{font-family: Arial, sans-serif;}
+        </style>
+
+    </head>
+    <h1> Rock'n'Roll</h1>
+        <table border="1">
+        <caption>Mis bandas favoritas</caption>
+        <thead>
+        <tr>
+            <th>Band</th>
+            <th>Genre</th>
+            <th>Country</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Metallica</td>
+            <td>Heavy Metal</td>
+            <td>USA</td>
+        </tr>
+        <tr>
+            <td>Queens of the Stone Age</td>
+            <td>Stoner Rock</td>
+            <td>USA</td>
+        </tr>
+        <tr>
+            <td>Nirvana</td>
+            <td>Grunge</td>
+            <td>USA</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" style="text-align:center"> QOTST rocks</td>
+        </tr>
+    </tfoot>
+
+    </table>
+    <br/>
+     <form action="/submit" method="post">
+        <fieldset>
+            <label for="fullname"> nombre completo </label>
+            <input type="text" name="fullname"/>
+            <br/>
+            <label for="correo"> email </label>
+            <input type="email" name="correo"/>
+            <br/>
+            <label for="contrasena"> contraseña </label>
+            <input type="password" name="contrasena" />
+            <br/>
+            <label for="band">Band:</label>
+            <select id="country" name="country" required>
+                <option value="">Seleccione...</option>
+                <option value="en">Nirvana</option>
+                <option value="en">QOTSA</option>
+                <option value="en">Foo Fighters</option>
+                <option value="en">Metallica</option>
+            </select>
+        </fieldset>
+          <button type="submit">Buy your tickets</button>
+    </form>
+</html> 
