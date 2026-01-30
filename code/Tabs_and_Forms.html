@@ -5,16 +5,40 @@
         <meta charset="UTF-8" />
         <title>My favorite Bands</title>
         <style>
-            body{background-color: rgb(159, 159, 228);}
-            h1{ 
-                color: white;
-                background-color: black
+            body{
+                background-color: rgb(199, 199, 214);
             }
-            p{font-family: Arial, sans-serif;}
+            h1{ 
+                color: rgb(167, 19, 19);
+                background-color: rgb(88, 69, 69);
+                text-align: center;
+            }
+            p{
+                font-family: Arial, sans-serif;
+                font-size: 20px;}
+            table{
+                width: 50%;
+                margin: auto;
+                border-collapse: collapse;
+            }
+            th, td{
+                padding: 20px;
+                text-align:center;
+            }
+            .green-fond{
+                background-color: rgb(0, 255, 0);
+                font-size: 30px;
+                font-weight: bold;
+            }
+            #favorite{
+                color: rgb(255, 34, 0);
+                font-weight: bold;
+            }
+
         </style>
 
     </head>
-    <h1> Rock'n'Roll</h1>
+    <h1 class="green-fond"> Rock'n'Roll</h1>
         <table border="1">
         <caption>Mis bandas favoritas</caption>
         <thead>
@@ -31,7 +55,7 @@
             <td>USA</td>
         </tr>
         <tr>
-            <td>Queens of the Stone Age</td>
+            <td id="favorite">Queens of the Stone Age</td>
             <td>Stoner Rock</td>
             <td>USA</td>
         </tr>
@@ -40,10 +64,15 @@
             <td>Grunge</td>
             <td>USA</td>
         </tr>
+        <tr>
+            <td>Franz Ferdinand</td>
+            <td>Indie Rock</td>
+            <td>Scotland</td>
+        </tr>
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="3" style="text-align:center"> QOTST rocks</td>
+            <td colspan="3" style="text-align:center"> QOST rocks</td>
         </tr>
     </tfoot>
 
@@ -67,6 +96,7 @@
                 <option value="en">QOTSA</option>
                 <option value="en">Foo Fighters</option>
                 <option value="en">Metallica</option>
+                <option value="en">Franz Ferdinand</option>
             </select>
         </fieldset>
           <button type="submit">Buy your tickets</button>
