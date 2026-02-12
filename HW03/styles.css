@@ -1,225 +1,176 @@
-
-body {
+/* --- Allowed tag selectors --- */
+body{
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  line-height: 1.6;
-  background: #0b1220;         /* color de fondo */
-  color: #e9eef7;              /* color de texto */
+  background: #0b1220;      /* background color */
+  color: #e9eef7;           /* text color */
 }
 
-p {
-  margin: 0.6rem 0 1rem;
-  color: #d7e1f3;              /* color de texto */
-  text-align: justify;         /* alineado de texto */
+p{
+  margin: 0.7rem auto;
+  max-width: 1000px;
+  padding: 0 1rem;
+  text-align: justify;      /* text alignment */
+  color: #d6e2ff;           /* text color */
 }
 
-h1, h2, h3 {
-  margin: 0.4rem 0 0.8rem;
-  text-align: left;            /* alineado de texto */
+h1{
+  text-align: center;       /* text alignment */
+  text-decoration: underline; /* underline */
+  margin: 1rem 0 0.5rem;
 }
 
-h1 {
-  text-align: center;
-  text-decoration: underline;  /* subrayado */
+h2{
+  text-decoration: underline; /* underline */
+  margin: 0.8rem 0 0.5rem;
 }
 
-h2 {
-  text-decoration: underline;  /* subrayado */
-}
-
-h3 {
+h3{
+  margin: 0.6rem 0 0.4rem;
   color: #cfe1ff;
 }
 
-/* ----- ÚNICO uso de ID (exactamente 1) ----- */
-#intro {
-  background: #101a33;         /* color de fondo */
-  border: 2px dotted #58d7ff;  /* borde punteado */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.35); /* sombra */
-  border-radius: 14px;
-  padding: 1rem 1.2rem;
-  margin: 1.1rem auto;
-  max-width: 980px;
-}
-
-
-
-.page {
+/* "header" is assumed to be the first child in body */
+body > *:first-child{
   max-width: 1100px;
   margin: 0 auto;
-  padding: 1.2rem;
-}
-
-.site-header {
-  background: #0f1a33;             /* color de fondo */
-  border-bottom: 3px solid #ff6aa2;/* borde sólido (color distinto) */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.35); /* sombra */
   padding: 1rem 1.2rem;
+  background: #0f1a33;                 /* background */
+  border-bottom: 4px solid #ff6aa2;     /* solid border */
+  box-shadow: 0 14px 30px rgba(0,0,0,.35); /* shadow */
+  border-radius: 16px;
 }
 
-.nav-list {
-  list-style: none;
-  padding: 0;
-  margin: 0.8rem 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem 1rem;
-  justify-content: center;
-}
-
-.nav-item {
-  margin: 0;
-}
-
-.nav-link {
-  color: #d7e1f3;                 /* color de texto */
-  text-decoration: underline;      /* subrayado */
-  padding: 0.25rem 0.5rem;
-  border: 1px dotted #7aa6ff;      /* borde punteado */
-  border-radius: 10px;
+/* nav links: use attribute selector (no 'a' tag selector) */
+[href^="#"]{
+  display: inline-block;
+  margin: 0.2rem 0.35rem;
+  padding: 0.3rem 0.65rem;
+  text-decoration: underline;           /* underline */
+  color: #7aa6ff;                       /* text color */
+  background: rgba(255,255,255,0.03);   /* background */
+  border: 1px dotted #58d7ff;           /* dotted border */
+  border-radius: 999px;
   transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 
-.nav-link:hover {
-  color: #0b1220;                  /* :hover cambia color */
-  background: #7aa6ff;             /* :hover cambia fondo */
-  border-color: #58d7ff;
+[href^="#"]:hover{
+  color: #0b1220;                       /* hover color */
+  background: #46f3a6;                  /* hover background */
+  border-color: #ffcc66;
 }
 
-.main {
-  padding: 1.2rem;
-}
-
-.section-card {
-  background: #0f1a33;              /* color de fondo */
-  border: 2px solid #46f3a6;        /* borde sólido */
-  box-shadow: 0 10px 26px rgba(0,0,0,0.35); /* sombra */
-  border-radius: 16px;
+/* "main" is usually after header + intro paragraph in your page.
+   This targets the 3rd element inside body as the main container. */
+body > *:nth-child(3){
+  max-width: 1100px;
+  margin: 0.8rem auto 0;
   padding: 1rem 1.2rem;
+}
+
+/* Sections/articles inside main: make “cards” */
+body > *:nth-child(3) > *{
+  max-width: 1000px;
   margin: 1rem auto;
-  max-width: 980px;
+  padding: 1rem 1.2rem;
+  background: rgba(255,255,255,0.03);  /* background */
+  border: 2px solid #46f3a6;           /* solid border */
+  border-radius: 16px;
+  box-shadow: 0 12px 26px rgba(0,0,0,.28); /* shadow */
 }
 
-.section-card--alt {
-  border: 2px dotted #ffcc66;       /* borde punteado (color distinto) */
+/* Alternate dotted border for variety (every second block) */
+body > *:nth-child(3) > *:nth-child(even){
+  border: 2px dotted #ffcc66;          /* dotted border */
 }
 
-.article-title {
-  text-align: left;
-}
-
-.image-frame {
+/* Images: target by [alt] attribute (no img tag selector) */
+[alt]{
   display: block;
   max-width: 100%;
   height: auto;
   margin: 0.8rem auto 1rem;
-  border: 3px solid #58d7ff;        /* borde sólido */
   border-radius: 14px;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.45); /* sombra */
+  border: 3px solid #58d7ff;           /* solid border */
+  box-shadow: 0 16px 30px rgba(0,0,0,.40); /* shadow */
 }
 
-.list-box {
-  border-left: 4px solid #ff6aa2;   /* borde sólido */
-  padding-left: 0.9rem;
-  margin: 0.8rem 0 1rem;
-}
-
-.link {
-  color: #9dd6ff;
-  text-decoration: underline;
-  transition: color 0.2s ease;
-}
-
-.link:hover {
-  color: #46f3a6;                   /* :hover cambia color */
-}
-
-.form-card {
-  background: #0f1a33;
-  border: 2px dotted #7aa6ff;       /* borde punteado */
-  border-radius: 16px;
-  box-shadow: 0 10px 26px rgba(0,0,0,0.35);
-  padding: 1rem 1.2rem;
+/* Forms: target by attribute presence (no form/input tag selectors) */
+[action], [method]{
+  max-width: 1000px;
   margin: 1rem auto;
-  max-width: 980px;
+  padding: 1rem 1.2rem;
+  background: rgba(15,26,51,.65);
+  border: 2px dotted #7aa6ff;          /* dotted border */
+  border-radius: 16px;
+  box-shadow: 0 12px 26px rgba(0,0,0,.28);
 }
 
-.field {
-  margin: 0.8rem 0;
-}
-
-.field-label {
-  display: inline-block;
-  margin-bottom: 0.35rem;
-  color: #e9eef7;
-  text-decoration: underline;       /* subrayado */
-}
-
-.input {
-  width: min(520px, 100%);
+/* Inputs by type (no 'input' tag selector) */
+[type="text"], [type="email"], [type="password"]{
+  width: min(560px, 100%);
   padding: 0.55rem 0.7rem;
-  border: 2px solid #58d7ff;        /* borde sólido */
+  margin: 0.25rem 0 0.9rem;
   border-radius: 12px;
-  background: #0b1220;              /* color de fondo */
-  color: #e9eef7;                   /* color de texto */
-  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+  border: 2px solid #58d7ff;
+  background: #0b1220;
+  color: #e9eef7;
+  box-shadow: 0 10px 18px rgba(0,0,0,.25);
   outline: none;
 }
 
-.input:focus {
-  border-color: #46f3a6;
-}
-
-.btn {
-  display: inline-block;
-  margin-top: 0.6rem;
-  padding: 0.6rem 1rem;
-  background: #7aa6ff;              /* color de fondo */
-  color: #0b1220;                   /* color de texto */
-  border: 2px solid #ff6aa2;        /* borde sólido (distinto color) */
-  border-radius: 999px;             /* borde redondeado (no cuadrado) */
-  cursor: pointer;
-  box-shadow: 0 10px 22px rgba(0,0,0,0.35);
-  transition: background 0.2s ease, color 0.2s ease, transform 0.05s ease;
-}
-
-.btn:hover {
-  background: #46f3a6;              /* :hover cambia color */
+/* Buttons (rounded corners): style submit buttons by type */
+[type="submit"], [type="button"]{
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;                /* rounded corners */
+  border: 2px solid #ff6aa2;
+  background: #7aa6ff;
   color: #0b1220;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 14px 22px rgba(0,0,0,.28);
+  transition: background 0.2s ease;
 }
 
-.btn:active {
-  transform: translateY(1px);
+[type="submit"]:hover, [type="button"]:hover{
+  background: #46f3a6;                 /* hover change */
 }
 
-.footer {
-  max-width: 980px;
+/* Footer assumed to be last child in body */
+body > *:last-child{
+  max-width: 1100px;
   margin: 1.2rem auto 2rem;
   padding: 1rem 1.2rem;
-  background: #0f1a33;
-  border-top: 3px solid #ffcc66;
+  background: rgba(15,26,51,.65);
+  border-top: 4px solid #ffcc66;
   border-radius: 16px;
-  box-shadow: 0 10px 26px rgba(0,0,0,0.35);
+  box-shadow: 0 14px 30px rgba(0,0,0,.30);
 }
 
 
-/* < 700px: cambiar fondo de un elemento (header) */
-@media (max-width: 700px) {
-  .site-header {
+#early-life{
+  outline: 3px dotted #ff6aa2; /* visible highlight */
+}
+
+
+/* We apply the background change to the FIRST child (your header container) */
+@media (max-width: 700px){
+  body > *:first-child{
     background: #2a1636;
   }
 }
 
-/* < 400px: hacer desaparecer UNA imagen */
-@media (max-width: 400px) {
-  .hide-on-small {
-    display: none;
+@media (max-width: 300px){
+  body > *:first-child{
+    background: #163622;
   }
 }
 
-/* < 300px: cambiar a otro color de fondo */
-@media (max-width: 300px) {
-  .site-header {
-    background: #163622;
+/* Hide ONE image under 400px:
+   Here we hide the FIRST [alt] element INSIDE the Nirvana section by using [id="nirvana"] (attribute selector, NOT #id)
+*/
+@media (max-width: 400px){
+  [id="nirvana"] [alt]{
+    display: none;
   }
 }
