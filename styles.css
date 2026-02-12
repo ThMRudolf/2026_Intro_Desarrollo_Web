@@ -1,0 +1,176 @@
+/* --- Allowed tag selectors --- */
+body{
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #0b1220;      /* background color */
+  color: #e9eef7;           /* text color */
+}
+
+p{
+  margin: 0.7rem auto;
+  max-width: 1000px;
+  padding: 0 1rem;
+  text-align: justify;      /* text alignment */
+  color: #d6e2ff;           /* text color */
+}
+
+h1{
+  text-align: center;       /* text alignment */
+  text-decoration: underline; /* underline */
+  margin: 1rem 0 0.5rem;
+}
+
+h2{
+  text-decoration: underline; /* underline */
+  margin: 0.8rem 0 0.5rem;
+}
+
+h3{
+  margin: 0.6rem 0 0.4rem;
+  color: #cfe1ff;
+}
+
+/* "header" is assumed to be the first child in body */
+body > *:first-child{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 1.2rem;
+  background: #0f1a33;                 /* background */
+  border-bottom: 4px solid #ff6aa2;     /* solid border */
+  box-shadow: 0 14px 30px rgba(0,0,0,.35); /* shadow */
+  border-radius: 16px;
+}
+
+/* nav links: use attribute selector (no 'a' tag selector) */
+[href^="#"]{
+  display: inline-block;
+  margin: 0.2rem 0.35rem;
+  padding: 0.3rem 0.65rem;
+  text-decoration: underline;           /* underline */
+  color: #7aa6ff;                       /* text color */
+  background: rgba(255,255,255,0.03);   /* background */
+  border: 1px dotted #58d7ff;           /* dotted border */
+  border-radius: 999px;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+[href^="#"]:hover{
+  color: #0b1220;                       /* hover color */
+  background: #46f3a6;                  /* hover background */
+  border-color: #ffcc66;
+}
+
+/* "main" is usually after header + intro paragraph in your page.
+   This targets the 3rd element inside body as the main container. */
+body > *:nth-child(3){
+  max-width: 1100px;
+  margin: 0.8rem auto 0;
+  padding: 1rem 1.2rem;
+}
+
+/* Sections/articles inside main: make “cards” */
+body > *:nth-child(3) > *{
+  max-width: 1000px;
+  margin: 1rem auto;
+  padding: 1rem 1.2rem;
+  background: rgba(255,255,255,0.03);  /* background */
+  border: 2px solid #46f3a6;           /* solid border */
+  border-radius: 16px;
+  box-shadow: 0 12px 26px rgba(0,0,0,.28); /* shadow */
+}
+
+/* Alternate dotted border for variety (every second block) */
+body > *:nth-child(3) > *:nth-child(even){
+  border: 2px dotted #ffcc66;          /* dotted border */
+}
+
+/* Images: target by [alt] attribute (no img tag selector) */
+[alt]{
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0.8rem auto 1rem;
+  border-radius: 14px;
+  border: 3px solid #58d7ff;           /* solid border */
+  box-shadow: 0 16px 30px rgba(0,0,0,.40); /* shadow */
+}
+
+/* Forms: target by attribute presence (no form/input tag selectors) */
+[action], [method]{
+  max-width: 1000px;
+  margin: 1rem auto;
+  padding: 1rem 1.2rem;
+  background: rgba(15,26,51,.65);
+  border: 2px dotted #7aa6ff;          /* dotted border */
+  border-radius: 16px;
+  box-shadow: 0 12px 26px rgba(0,0,0,.28);
+}
+
+/* Inputs by type (no 'input' tag selector) */
+[type="text"], [type="email"], [type="password"]{
+  width: min(560px, 100%);
+  padding: 0.55rem 0.7rem;
+  margin: 0.25rem 0 0.9rem;
+  border-radius: 12px;
+  border: 2px solid #58d7ff;
+  background: #0b1220;
+  color: #e9eef7;
+  box-shadow: 0 10px 18px rgba(0,0,0,.25);
+  outline: none;
+}
+
+/* Buttons (rounded corners): style submit buttons by type */
+[type="submit"], [type="button"]{
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;                /* rounded corners */
+  border: 2px solid #ff6aa2;
+  background: #7aa6ff;
+  color: #0b1220;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 14px 22px rgba(0,0,0,.28);
+  transition: background 0.2s ease;
+}
+
+[type="submit"]:hover, [type="button"]:hover{
+  background: #46f3a6;                 /* hover change */
+}
+
+/* Footer assumed to be last child in body */
+body > *:last-child{
+  max-width: 1100px;
+  margin: 1.2rem auto 2rem;
+  padding: 1rem 1.2rem;
+  background: rgba(15,26,51,.65);
+  border-top: 4px solid #ffcc66;
+  border-radius: 16px;
+  box-shadow: 0 14px 30px rgba(0,0,0,.30);
+}
+
+
+#early-life{
+  outline: 3px dotted #ff6aa2; /* visible highlight */
+}
+
+
+/* We apply the background change to the FIRST child (your header container) */
+@media (max-width: 700px){
+  body > *:first-child{
+    background: #2a1636;
+  }
+}
+
+@media (max-width: 300px){
+  body > *:first-child{
+    background: #163622;
+  }
+}
+
+/* Hide ONE image under 400px:
+   Here we hide the FIRST [alt] element INSIDE the Nirvana section by using [id="nirvana"] (attribute selector, NOT #id)
+*/
+@media (max-width: 400px){
+  [id="nirvana"] [alt]{
+    display: none;
+  }
+}
