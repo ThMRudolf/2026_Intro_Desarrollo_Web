@@ -30,6 +30,11 @@ h3{
   color: #cfe1ff;
 }
 
+@media (max-width: 1200px){
+  img{
+    display: none; /* hide all images under 600px */
+  }
+}
 /* "header" is assumed to be the first child in body */
 body > *:first-child{
   max-width: 1100px;
