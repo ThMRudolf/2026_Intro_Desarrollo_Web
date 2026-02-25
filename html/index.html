@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> 
+            Events 
+        </title>
+    </head>
+    <body>
+        <button id="showImageId", onclick="showImage()"> show Image </button>
+        <button id="hideImageId", onclick="hideImage()"> hide Image </button>
+        <div id="imageContainer">
+            <img id="image" src="https://www.itam.mx/sites/all/themes/coursat/logo.png" alt="ITAM">
+        </div>
+
+        <script>
+            function showImage() {
+                const image = document.getElementById('image');
+                image.style.display = 'block';
+                image.style.background = "red"
+                alert('Image is now visible');
+            }
+            function hideImage() {
+                const image = document.getElementById('image');
+                image.style.display = 'none';
+                
+                alert('Image is now hidden');
+            }   
+        </script>
+
+    </body>

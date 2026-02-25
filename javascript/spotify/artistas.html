@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artistas Spotify</title>
+  </head>
+  <body>
+    <div id="information"></div>
+    <script>
+      function formatArtistData(artist) {
+        response =
+          "<h2>" +
+          artist.name +
+          "</h2><p> followers: " +
+          artist.followers.total +
+          "</p><p> genres: " +
+          artist.genres.join(", ") +
+          "</p><img src='" +
+          artist.images[0].url[0] +
+          "' alt='Imagen del artista' width='200'/>";
+        return response;
+      }
+      function obtenerArtista() {
+        const parametros = {
+          method: "GET",
+          headers: {
+            Authorization:
+              "Bearer BQCuXKLZXi3fJ6pQz0u8wyZ0KPZRR4_c4TaNpr6dYIU3OTmAUuItbpifTHUYhuFnwa598xMVllB1esqnN8cp9qgHAfLitGtPooTsJXQqlkN97w54OsURMh2d0xBHIttr0ebx35zHlpE",
+          },
+        };
+
+        fetch(
+          "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg",
+          parametros,
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            /*
+            { "external_urls": { "spotify": "https://open.spotify.com/artist/0TnOYISbd1XYRBk9myaseg" },
+            "href": "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg?locale=es-419%2Ces%3Bq%3D0.9%2Ces-ES%3Bq%3D0.8%2Cen%3Bq%3D0.7%2Cen-GB%3Bq%3D0.6%2Cen-US%3Bq%3D0.5%2Ces-MX%3Bq%3D0.4%2Cde-DE%3Bq%3D0.3%2Cde%3Bq%3D0.2",
+             "id": "0TnOYISbd1XYRBk9myaseg", 
+             "images": [ { "url": "https://i.scdn.co/image/ab6761610000e5eb8d8ac7290d0fe2d12fb6e4d9", "height": 640, "width": 640 }, 
+                        { "url": "https://i.scdn.co/image/ab676161000051748d8ac7290d0fe2d12fb6e4d9", "height": 320, "width": 320 }, 
+                        { "url": "https://i.scdn.co/image/ab6761610000f1788d8ac7290d0fe2d12fb6e4d9", "height": 160, "width": 160 } ], 
+              "name": "Pitbull", "type": "artist", 
+             "uri": "spotify:artist:0TnOYISbd1XYRBk9myaseg" }
+            */
+            const contendorInformation = document.getElementById("information");
+            //contendorInformation.textContent = JSON.stringify(data, null, 2);
+            contendorInformation.innerHTML = formatArtistData(data);
+          })
+          .catch((error) =>
+            console.error("Error al obtener el artista:", error),
+          );
+      }
+      obtenerArtista();
+    </script>
+  </body>
+</html>

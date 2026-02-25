@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artistas Spotify</title>
+  </head>
+  <body>
+    <div id="information"></div>
+    <script>
+      function obtenerArtista() {
+        const parametros = {
+          method: "GET",
+          headers: {
+            Authorization:
+              "Bearer https://api.nasa.gov/planetary/apod?api_key=gxl83Gi1psqGS8exXYTdvH6EPPNcJUvHUeTFmbGK",
+          },
+        };
+        fetch("https://api.nasa.gov/planetary/apod", parametros)
+          .then((response) => response.json())
+          .then((data) => {
+            /*
+            
+            */
+            const contendorInformation = document.getElementById("information");
+            //contendorInformation.textContent = JSON.stringify(data, null, 2);
+            contendorInformation.innerHTML = formatArtistData(data);
+          })
+          .catch((error) =>
+            console.error("Error al obtener el artista:", error),
+          );
+      }
+      obtenerArtista();
+    </script>
+  </body>
+</html>

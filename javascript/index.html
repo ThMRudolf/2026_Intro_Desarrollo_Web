@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask for your name</title>
+</head>
+<body>
+    <h1 id="greeting">Hello, Guest!</h1>
+    <button onclick="askName()">Ask for your name</button>
+    <input type="text" id="nameInput" placeholder="Enter your name here"/>
+    <input type="text" id="middleNameInput" placeholder="Enter your middle name here"/>
+    <script>
+        function askName() {
+           const name = {   
+                name: document.getElementById('nameInput').value,
+                middle_name: document.getElementById('middleNameInput').value
+              };
+              console.log(name);
+
+              localStorage.setItem('Name', name);
+              localStorage.setItem('Name_t', JSON.stringify(name));
+            }
+    </script>
+</body>
