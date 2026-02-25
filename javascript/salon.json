@@ -1,0 +1,20 @@
+{
+  "profesor": {
+    "nombre": "Fabián",
+    "intereses_profesionales": [
+      "Desarrollo de Sofware",
+      "Inteligencia Artificial",
+      "Educación"
+    ]
+  },
+  "alumnos": [
+    {
+      "nombre": "Thomas",
+      "intereses": ["Manufactura", "Ciencia de Datos", "Musica"]
+    },
+    {
+      "nombre": "Marta",
+      "intereses": ["Optimización", "Ciencia de Datos", "Viajes"]
+    }
+  ]
+}
