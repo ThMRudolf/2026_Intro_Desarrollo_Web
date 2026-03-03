@@ -1,3 +1,13 @@
 #  file tyoes
 *.doc
 *.docx
+
+
+#  python
+__pycache__/
+*.pyc
+*.pyo   
+#  vscode
+.vscode/
+# environment variables.env
+.myenv/
