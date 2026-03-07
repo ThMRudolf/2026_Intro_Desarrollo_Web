@@ -1,3 +1,5 @@
+
+# Almacenamiento Web: LocalStorage y SessionStorage
 **sessionStorage** es una API de almacenamiento web nativa de JavaScript que permite guardar pares clave-valor en el navegador, accesibles solo mientras la pestaña o ventana siga abierta. Los datos sobreviven a recargas, pero se eliminan al cerrar la pestaña. Es ideal para datos temporales de sesión (<https://ed.team/blog/que-es-y-como-utilizar-localstorage-y-sessionstorage>).
 
 **Métodos Principales**:
