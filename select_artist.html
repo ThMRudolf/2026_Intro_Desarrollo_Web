@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artist Selection</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <main class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h1 class="card-title mb-4">Artist Selection</h1>
+
+              <section>
+                <h2 class="h4 mb-3">Save Token</h2>
+
+                <div class="mb-3">
+                  <label for="tokenInput" class="form-label">Token</label>
+                  <input
+                    type="text"
+                    id="tokenInput"
+                    class="form-control"
+                    placeholder="Enter your token"
+                  />
+                </div>
+
+                <button id="saveTokenBtn" class="btn btn-primary">
+                  Save Token
+                </button>
+
+                <p id="message" class="mt-3 mb-0 text-success"></p>
+              </section>
+              <section>
+                <h2 class="h4 mb-3">Choose a Track</h2>
+                <div class="mb-3">
+                  <label for="trackSelect" class="form-label">Track</label>
+                  <select id="trackSelect" class="form-select">
+                    <option value="">Select a track</option>
+                    <option value="6HU7h9RYOaPRFeh0R3UeAr">deja vu</option>
+                    <option value="6De0lHrwBfPfrhorm9q1Xl">me rehúso</option>
+                    <option value="2lTm559tuIvatlT1u0JYG2">baile inolvidable</option>
+                    <option value="0wzRcekWyVCSyPtlPOeJau">Go With the Flow</option>
+                    <option value="0BqQWfhMrkpRAUCbdfdHUC">Little Sister</option>
+                  </select>
+                </div>
+                <button id="clearBtn" class="btn btn-secondary">Clear</button>
+                
+              </section>
+              <!-- Error alert container -->
+              <div id="alertContainer"></div>
+
+              <!-- Result container -->
+              <section id="resultSection" class="mt-4"></section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const tokenInput = document.getElementById("tokenInput");
+      const saveTokenBtn = document.getElementById("saveTokenBtn");
+      const message = document.getElementById("message");
+      // add com to spotify
+      const trackSelect = document.getElementById("trackSelect");
+      const resultSection = document.getElementById("resultSection");
+      const alertContainer = document.getElementById("alertContainer");
+      const clearBtn = document.getElementById("clearBtn");
+      
+      // show saved token in the input when the page loads -->
+      window.addEventListener("DOMContentLoaded", function () {
+        const savedToken = sessionStorage.getItem("token");
+        if (savedToken) {
+          tokenInput.value = savedToken;
+        }
+      });
+      
+      saveTokenBtn.addEventListener("click", function () {
+        const token = tokenInput.value.trim();
+
+        if (token === "") {
+          message.textContent = "Please enter a token.";
+          message.className = "mt-3 mb-0 text-danger";
+          return;
+        }
+
+        sessionStorage.setItem("token", token);
+        message.textContent = "Token saved in sessionStorage.";
+        message.className = "mt-3 mb-0 text-success";
+      });
+      trackSelect.addEventListener("change", async function () {
+        clearAlert();
+        clearResult();
+
+        const trackId = trackSelect.value;
+
+        if (!trackId) {
+          return;
+        }
+
+        try {
+          const token = sessionStorage.getItem("token");
+
+          if (!token) {
+            throw new Error("No token found in sessionStorage.");
+          }
+
+          const response = await fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
+
+          if (!response.ok) {
+            throw new Error(`Spotify API error: ${response.status}`);
+          }
+
+          const trackData = await response.json();
+          renderTrack(trackData);
+        } catch (error) {
+          showErrorAlert(`There was an error while calling the Spotify API: ${error.message}`);
+          console.error(error);
+        }
+      });
+
+      clearBtn.addEventListener("click", function () {
+        clearAlert();
+        clearResult();
+        trackSelect.value = "";
+      });
+
+      function clearResult() {
+        resultSection.innerHTML = "";
+      }
+
+      function clearAlert() {
+        alertContainer.innerHTML = "";
+      }
+
+      function showErrorAlert(message) {
+        alertContainer.innerHTML = `
+          <div class="alert alert-danger mt-3" role="alert">
+            ${message}
+          </div>
+        `;
+      }
+
+      function buildArtistsProfile(artists) {
+        let artistsHtml = '<ul class="list-group">';
+
+        for (let i = 0; i < artists.length; i++) {
+          artistsHtml += `
+            <li class="list-group-item">
+              <strong>${artists[i].name}</strong><br />
+              <a href="${artists[i].external_urls.spotify}" target="_blank" rel="noopener noreferrer">
+                ${artists[i].external_urls.spotify}
+              </a>
+            </li>
+          `;
+        }
+
+        artistsHtml += "</ul>";
+        return artistsHtml;
+      }
+
+      function renderTrack(track) {
+        const albumType = track.album.album_type;
+        const totalTracks = track.album.total_tracks;
+        const albumName = track.album.name;
+        const trackName = track.name;
+        const artistsHtml = buildArtistsProfile(track.artists);
+
+        resultSection.innerHTML = `
+          <div class="card border-success">
+            <div class="card-body">
+              <h2 class="h4 mb-3">Track Result</h2>
+              <p><strong>Track Name:</strong> ${trackName}</p>
+              <p><strong>Album Type:</strong> ${albumType}</p>
+              <p><strong>Total Tracks:</strong> ${totalTracks}</p>
+              <p><strong>Album Name:</strong> ${albumName}</p>
+              <h3 class="h5 mt-4">Artists</h3>
+              ${artistsHtml}
+            </div>
+          </div>
+        `;
+      }
+
+    </script>
+  </body>
+</html>
