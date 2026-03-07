@@ -3,7 +3,7 @@ body{
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background: #b6dadb;      /* background color */
-  color: #e9eef7;           /* text color */
+  color: #010611;           /* text color */
 }
 
 p{
@@ -11,7 +11,7 @@ p{
   max-width: 1000px;
   padding: 0 1rem;
   text-align: justify;      /* text alignment */
-  color: #d6e2ff;           /* text color */
+  color: #010614;           /* text color */
 }
 
 h1{
@@ -23,11 +23,13 @@ h1{
 h2{
   text-decoration: underline; /* underline */
   margin: 0.8rem 0 0.5rem;
+  color: #010614;           /* text color */
 }
 
 h3{
   margin: 0.6rem 0 0.4rem;
-  color: #cfe1ff;
+  color: #cfffda;
+  color: #010614;           /* text color */
 }
 
 /* "header" is assumed to be the first child in body */
