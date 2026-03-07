@@ -2,7 +2,7 @@
 body{
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: #0b1220;      /* background color */
+  background: #b6dadb;      /* background color */
   color: #e9eef7;           /* text color */
 }
 
@@ -36,7 +36,7 @@ body > *:first-child{
   margin: 0 auto;
   padding: 1rem 1.2rem;
   background: #0f1a33;                 /* background */
-  border-bottom: 4px solid #ff6aa2;     /* solid border */
+  border-bottom: 4px solid #f6f4f5;     /* solid border */
   box-shadow: 0 14px 30px rgba(0,0,0,.35); /* shadow */
   border-radius: 16px;
 }
