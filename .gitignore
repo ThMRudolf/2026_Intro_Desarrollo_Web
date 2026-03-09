@@ -11,3 +11,7 @@ __pycache__/
 .vscode/
 # environment variables.env
 .myenv/
+ 
+myenv/
+# R
+.Rhistory
