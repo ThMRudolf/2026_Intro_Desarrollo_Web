@@ -14,11 +14,11 @@
         <script>
             // Función para cargar las solicitudes de adopción
             function cargarSolicitudes() {
-                fetch('solicitudes.json')
+                fetch('https://two026-intro-desarrollo-web.onrender.com/solicitudes')
                     .then(response => response.json())
                     .then(data => {
                         const solicitudesDiv = document.getElementById('solicitudes');
-                        solicitudesDiv.innerHTML = '<h2>Solicitudes de Adopción</h2>';
+                        solicitudesDiv.textContent = JASON.stringify(data, null, 2); // Mostrar los datos en formato JSON
                         /*data.forEach(solicitud => {
                             const solicitudElement = document.createElement('div');
                             solicitudElement.innerHTML = `
