@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Adopta una Mascota</title>
+    </head>
+    <body> 
+        <h1>Adopta una Mascota</h1>
+        <p>¡Bienvenido a nuestro sitio de adopción de mascotas! Aquí puedes encontrar una variedad de animales que buscan un hogar amoroso. Explora nuestras opciones y encuentra a tu nuevo mejor amigo.</p>
+        <div id="solicitudes"></div>
+        <div id="solicitudesBonitos"></div>
+
+        <script>
+            // Función para cargar las solicitudes de adopción
+            function cargarSolicitudes() {
+                fetch('solicitudes.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        const solicitudesDiv = document.getElementById('solicitudes');
+                        solicitudesDiv.innerHTML = '<h2>Solicitudes de Adopción</h2>';
+                        /*data.forEach(solicitud => {
+                            const solicitudElement = document.createElement('div');
+                            solicitudElement.innerHTML = `
+                                <h3>${solicitud.nombre}</h3>
+                                <p>Edad: ${solicitud.edad} años</p>
+                                <p>Tipo: ${solicitud.tipo}</p>
+                                <p>Descripción: ${solicitud.descripcion}</p>
+                            `;
+                            solicitudesDiv.appendChild(solicitudElement);
+                        });*/
+                    })
+                    .catch(error => console.error('Error al cargar las solicitudes:', error));
+            }
+
+            // Cargar las solicitudes al cargar la página
+            window.onload = cargarSolicitudes;
+        </script>
+    </body>
+</html>
