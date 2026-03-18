@@ -11,18 +11,18 @@
         <form onsubmit="enviarSolicitud(event, this)">
             <h2>Formulario de Solicitud de Adopción</h2>
             <label for="nombre" >Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required><br><br>
+            <input type="text" id="nombre" name="nombrePersona" required><br><br>
 
-            <label for="tipo">Tipo de Mascota:</label>
-            <select id="tipo" name="tipo" required>
+            <label for="mascotaDeseada">Tipo de Mascota:</label>
+            <select id="mascotaDeseada" name="mascotaDeseada" required>
                 <option value="">Selecciona un tipo</option>
                 <option value="perro">Perro</option>
                 <option value="gato">Gato</option>
                 <option value="otro">Otro</option>
             </select><br><br>
 
-            <label for="descripcion">Descripción y motivación:</label><br>
-            <textarea id="descripcion" name="descripcion" rows="4" cols="50" required></textarea><br><br>
+            <label for="motivo">Descripción y motivación:</label><br>
+            <textarea id="motivo" name="motivo" rows="4" cols="50" required></textarea><br><br>
 
             <button type="submit">Enviar Solicitud</button>
         <div id="solicitudes"></div>
@@ -51,6 +51,7 @@
                     } else {
                         alert('Error al enviar la solicitud');
                     }*/
+                    cargarSolicitudes()
                 } catch (error) {
                     console.error('Error al enviar la solicitud:', error);
                     alert('Error al enviar la solicitud');
@@ -62,7 +63,7 @@
                     .then(response => response.json())
                     .then(data => {
                         const solicitudesDiv = document.getElementById('solicitudes');
-                        solicitudesDiv.textContent = JASON.stringify(data, null, 2); // Mostrar los datos en formato JSON
+                        solicitudesDiv.textContent = JSON.stringify(data, null, 2); // Mostrar los datos en formato JSON
                         /*data.forEach(solicitud => {
                             const solicitudElement = document.createElement('div');
                             solicitudElement.innerHTML = `

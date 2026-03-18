@@ -1,9 +1,7 @@
 from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel, Field
 from uuid import uuid4, UUID
-from fastapi import FastAPI, HTTPException, status
-from pydantic import BaseModel, Field
-from uuid import uuid4, UUID
+
 
 app = FastAPI()
 
