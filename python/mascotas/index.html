@@ -8,10 +8,57 @@
     <body> 
         <h1>Adopta una Mascota</h1>
         <p>¡Bienvenido a nuestro sitio de adopción de mascotas! Aquí puedes encontrar una variedad de animales que buscan un hogar amoroso. Explora nuestras opciones y encuentra a tu nuevo mejor amigo.</p>
+        <form onsubmit="enviarSolicitud(event, this)">
+            <h2>Formulario de Solicitud de Adopción</h2>
+            <label for="nombre" req>Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required><br><br>
+
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" required><br><br>
+
+            <label for="tipo">Tipo de Mascota:</label>
+            <select id="tipo" name="tipo" required>
+                <option value="">Selecciona un tipo</option>
+                <option value="perro">Perro</option>
+                <option value="gato">Gato</option>
+                <option value="otro">Otro</option>
+            </select><br><br>
+
+            <label for="descripcion">Descripción:</label><br>
+            <textarea id="descripcion" name="descripcion" rows="4" cols="50" required></textarea><br><br>
+
+            <button type="submit">Enviar Solicitud</button>
         <div id="solicitudes"></div>
         <div id="solicitudesBonitos"></div>
 
         <script>
+            async function enviarSolicitud(event, form) {
+                event.preventDefault(); // Evitar que el formulario se envíe de forma tradicional
+                const data = Object.fromEntries(new FormData(form)); // Obtener los datos del formulario
+
+                try {
+                    const response = await fetch('https://two026-intro-desarrollo-web.onrender.com/solicitudes', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+                    const result = await response.json();
+                    console.log('solicitud enviada:', result);
+                    alert('Solicitud enviada con éxito');
+                    /*if (response.ok) {
+                        alert('Solicitud enviada con éxito');
+                        form.reset(); // Limpiar el formulario después de enviar
+                        cargarSolicitudes(); // Recargar las solicitudes para mostrar la nueva
+                    } else {
+                        alert('Error al enviar la solicitud');
+                    }*/
+                } catch (error) {
+                    console.error('Error al enviar la solicitud:', error);
+                    alert('Error al enviar la solicitud');
+                }
+            }
             // Función para cargar las solicitudes de adopción
             function cargarSolicitudes() {
                 fetch('https://two026-intro-desarrollo-web.onrender.com/solicitudes')
