@@ -1,0 +1,17 @@
+https://sqliteonline.com/
+
+SELECT * FROM Persona;
+
+SELECT DISTINCT estado from Persona;
+
+SELECT COUNT(DISTINCT estado) from Persona
+
+SELECT COUNT(estado) from Persona
+
+SELECT COUNT(DISTINCT estado) AS estados_unicos from Persona
+
+SELECT COUNT(*) From Persona
+
+SELECT SUM(total_hermanos) from Persona
+
+SELECT AVG(total_hermanos) AS hermanos_promedio FROM Persona

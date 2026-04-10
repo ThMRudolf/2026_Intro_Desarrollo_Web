@@ -1,6 +1,8 @@
 #  file tyoes
 *.doc
 *.docx
+*.mp4
+*.avi
 
 
 #  python
@@ -10,8 +12,9 @@ __pycache__/
 #  vscode
 .vscode/
 # environment variables.env
-.myenv/
- 
+myemv/
+
+
 myenv/
 # R
 .Rhistory
