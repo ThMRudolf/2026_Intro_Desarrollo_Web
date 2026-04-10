@@ -56,27 +56,27 @@ Concatenación directa de strings en queries
 
 Implicaciones:
 
-Acceso no autorizado Modificación de datos Eliminación de información
-Compromiso del sistema
+Acceso no autorizado, modificación de datos, eliminación de información,
+compromiso del sistema
 
 Casos reales:
 
-TalkTalk (2015): filtración de datos de clientes Sony Pictures (2014):
-acceso a información interna Heartland Payment Systems (2008): robo
-masivo de tarjetas
+TalkTalk (2015): filtración de datos de clientes Sony Pictures
 
-Prevención:
+(2014): acceso a información interna Heartland Payment Systems
 
-Queries parametrizadas Validación de inputs
+(2008): robo masivo de tarjetas
+
+Prevención: Queries parametrizadas Validación de inputs
 
 ## 5. ¿Qué es un ORM y qué diferencias existen con escribir sentencias de SQL comunes?
 
-Definición: ORM = Object-Relational Mapping Mapea tablas a objetos
+Definición: ORM = Object-Relational Mapping
 
 *Diferencias:*
 
-ORM: Alta abstracción Menos control Desarrollo más rápido
+ORM: Alta abstracción, Menos control, Desarrollo más rápido
 
-SQL: Control total Mejor optimización Mayor complejidad
+SQL: Control total, Mejor optimización, Mayor complejidad
 
 Observación: ORM no reemplaza SQL Uso combinado recomendado
